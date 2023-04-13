@@ -1,0 +1,33 @@
+{% extends 'todo/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>current</title>
+</head>
+{% csrf_token %}
+<body>
+
+{% block content %}
+current
+<ul>
+    {% for todo in todos %}
+    <li>
+        <a href="{% url 'viewtodo' todo.id %}">
+        {% if todo.important %}
+        <b>
+        {% endif %}
+        {{ todo.title }}
+        {% if todo.important %}
+        </b>
+        {% endif %}
+        {% if todo.description %}
+         - {{ todo.description }}
+        {% endif %}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
+</body>
+</html>
